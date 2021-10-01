@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">UserActivityList</string>
+    <string name="name">Name</string>
+    <string name="lastname">Lastname</string>
+    <string name="email">Email</string>
+    <string name="save">Save</string>
+    <string name="user_key">user_key</string>
+    <string name="position_key">postion_key</string>
+</resources>
