@@ -12,9 +12,9 @@ class UsersActivity : AppCompatActivity() {
 
     private var position = -1
     private lateinit var binding: ActivityUserBinding
-    private val adapter = UserAdapter { user, position ->
+    private val adapter = UserAdapter { user, position->
         navigateToDetailsScreenForResult(user)
-        this@UsersActivity.position = position
+        this.position = position
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +41,7 @@ class UsersActivity : AppCompatActivity() {
 
     private fun setDataFromResult(user: User?) {
         adapter.list[position] = user!!
+        adapter.notifyItemChanged(position)
     }
 
     private fun setRecycler() {

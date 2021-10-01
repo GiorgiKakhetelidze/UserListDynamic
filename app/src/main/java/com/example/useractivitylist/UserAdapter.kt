@@ -6,24 +6,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.useractivitylist.databinding.UserItemBinding
 
-class UserAdapter(private val onItemClick: (user: User, position : Int) -> Unit) :
+class UserAdapter(private val onItemClick: (user: User, position: Int) -> Unit) :
     RecyclerView.Adapter<UserAdapter.ItemViewHolder>() {
 
     var list = mutableListOf<User>()
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
 
     private val onClickListener = View.OnClickListener { v ->
         val user = v.getTag(R.string.user_key) as User
         val position = v.getTag(R.string.position_key) as Int
-        onItemClick.invoke(user,position)
+        onItemClick.invoke(user, position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ItemViewHolder(
         binding = UserItemBinding.inflate(LayoutInflater.from(parent.context)),
-        onClickListener =  onClickListener
+        onClickListener = onClickListener
     )
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
@@ -37,6 +33,8 @@ class UserAdapter(private val onItemClick: (user: User, position : Int) -> Unit)
         onClickListener: View.OnClickListener
     ) :
         RecyclerView.ViewHolder(binding.root) {
+        private lateinit var curData: User
+
         init {
             binding.btnUpdateImgView.setOnClickListener(onClickListener)
             binding.btnDeleteImgView.setOnClickListener {
@@ -45,16 +43,14 @@ class UserAdapter(private val onItemClick: (user: User, position : Int) -> Unit)
             }
         }
 
-        lateinit var curData: User
-
         fun bind() {
             curData = list[adapterPosition]
             binding.nameTxtView.text = curData.name
             binding.lastNameTxtView.text = curData.lastName
-            binding.root.setTag(R.string.user_key,curData)
-            binding.root.setTag(R.string.position_key , adapterPosition)
+            binding.mailTxtView.text = curData.mail
+            binding.btnUpdateImgView.setTag(R.string.user_key, curData)
+            binding.btnUpdateImgView.setTag(R.string.position_key,adapterPosition)
         }
+
     }
-
-
 }
