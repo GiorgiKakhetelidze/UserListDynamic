@@ -11,8 +11,10 @@ import com.example.useractivitylist.databinding.ActivityUserBinding
 class UsersActivity : AppCompatActivity() {
 
     private var position = -1
+
     private lateinit var binding: ActivityUserBinding
-    private val adapter = UserAdapter { user, position->
+
+    private val adapter = UserAdapter { user, position ->
         navigateToDetailsScreenForResult(user)
         this.position = position
     }
@@ -50,16 +52,17 @@ class UsersActivity : AppCompatActivity() {
         binding.recycleView.adapter = adapter
 
         adapter.list = mutableListOf(
-            User("Giorgi", "Kakhetelidze", "kakhetelidzegio@gmail.com"),
-            User("Giorgi", "Kakhetelidze", "kakhetelidzegio@gmail.com"),
-            User("Giorgi", "Kakhetelidze", "kakhetelidzegio@gmail.com"),
-            User("Giorgi", "Kakhetelidze", "kakhetelidzegio@gmail.com"),
-            User("Giorgi", "Kakhetelidze", "kakhetelidzegio@gmail.com"),
-            User("Giorgi", "Kakhetelidze", "kakhetelidzegio@gmail.com")
+            User("Giorgi", "Kakhetelidze", "kakhetelidz"),
+            User("Giorgi", "Kakhetelidze", "kakhetelidz"),
+            User("Giorgi", "Kakhetelidze", "kakhetel"),
+            User("Giorgi", "Kakhetelidze", "kakhetel@gmail.com"),
+            User("Giorgi", "Kakhetelidze", "kakhetel@gmail.com"),
+            User("Giorgi", "Kakhetelidze", "kakhetel@gmail.com")
         )
     }
 
     companion object {
         const val USER_KEY = "USER"
     }
+
 }

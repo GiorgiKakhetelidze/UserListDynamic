@@ -11,15 +11,9 @@ class UserAdapter(private val onItemClick: (user: User, position: Int) -> Unit) 
 
     var list = mutableListOf<User>()
 
-    private val onClickListener = View.OnClickListener { v ->
-        val user = v.getTag(R.string.user_key) as User
-        val position = v.getTag(R.string.position_key) as Int
-        onItemClick.invoke(user, position)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ItemViewHolder(
-        binding = UserItemBinding.inflate(LayoutInflater.from(parent.context)),
-        onClickListener = onClickListener
+        binding = UserItemBinding.inflate(LayoutInflater.from(parent.context))
     )
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
@@ -29,14 +23,16 @@ class UserAdapter(private val onItemClick: (user: User, position: Int) -> Unit) 
     override fun getItemCount() = list.size
 
     inner class ItemViewHolder(
-        val binding: UserItemBinding,
-        onClickListener: View.OnClickListener
+        val binding: UserItemBinding
+
     ) :
         RecyclerView.ViewHolder(binding.root) {
         private lateinit var curData: User
 
         init {
-            binding.btnUpdateImgView.setOnClickListener(onClickListener)
+            binding.btnUpdateImgView.setOnClickListener{
+                onItemClick.invoke(list[adapterPosition],adapterPosition)
+            }
             binding.btnDeleteImgView.setOnClickListener {
                 list.removeAt(adapterPosition)
                 notifyItemRemoved(adapterPosition)

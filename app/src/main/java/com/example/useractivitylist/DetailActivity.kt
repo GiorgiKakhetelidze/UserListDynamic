@@ -25,7 +25,6 @@ class DetailActivity : AppCompatActivity() {
         binding.mailEditTxtView.setText(data?.mail)
     }
 
-
     private fun setListeners(){
         binding.btnSave.setOnClickListener{
             saveAndGoToProfile()
