@@ -11,7 +11,6 @@ class UserAdapter(private val onItemClick: (user: User, position: Int) -> Unit) 
 
     var list = mutableListOf<User>()
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ItemViewHolder(
         binding = UserItemBinding.inflate(LayoutInflater.from(parent.context))
     )
@@ -44,8 +43,6 @@ class UserAdapter(private val onItemClick: (user: User, position: Int) -> Unit) 
             binding.nameTxtView.text = curData.name
             binding.lastNameTxtView.text = curData.lastName
             binding.mailTxtView.text = curData.mail
-            binding.btnUpdateImgView.setTag(R.string.user_key, curData)
-            binding.btnUpdateImgView.setTag(R.string.position_key,adapterPosition)
         }
 
     }
